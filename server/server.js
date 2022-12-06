@@ -15,6 +15,10 @@ const server=new ApolloServer({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.get('/',(req,res)=>{
+    res.sendFile(path.join(__dirname,'../client/build/index.html'))
+});
+
 const startApolloServer=async(typeDefs,resolvers)=>{
     await server.start();
     server.applyMiddleware({app});
