@@ -10,16 +10,18 @@ import {GET_ME} from '../utils/queries';
 const SavedBooks = () => {
   const {loading,data}=useQuery(GET_ME);
   const userData=data?.me || [];
-  const {removeBook}=useMutation(REMOVE_BOOK);
+  const [removeBook]=useMutation(REMOVE_BOOK);
 
-  const handleDeleteBook=async (bookId)=>{
-    const token=Auth.loggedIn() ? Auth.getToken() : null;
-    if(!token){
+  const handleDeleteBook = async (bookId) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
       return false;
     }
 
-    try{
-      const{data}=await removeBook({variables:{bookId}});
+    try {
+      const {data} = await removeBook({variables:{bookId},
+      });
       removeBookId(bookId);
     } catch(err){
       console.error(err);
