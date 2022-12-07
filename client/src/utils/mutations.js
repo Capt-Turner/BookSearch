@@ -35,7 +35,7 @@ mutation saveBook(
         bookId: $bookId
         authors: $authors
         title: $title
-        description $description
+        description: $description
         image: $image
         link: $link
     ){
